@@ -8,24 +8,54 @@ class App extends Component {
     super(props)
     this.state = {
       title: "Shiba Inu",
-      description: "Good boy",
-      imagePath: "./images/img1.jpg"
+      question: "What are they known as?",
+      hint: "Dogge",
+      imagePath: "./images/img1.jpg",
+      visibility: true
     }
-
+  this.toggleVsibility = this.toggleVsibility.bind(this)
+  
+}
+toggleVsibility(){
+  if(this.state.visibility == true){
+    this.setState({
+      visibility: false
+    })} else {
+        this.setState({
+          visibility: true
+        })
+    }
   }
+  
   render() {
-    return (
-      <div className="container">
-        <div className="card">
-        <img className="card-img-top" src={this.state.imagePath} alt="Card image cap"/>
-          <div className="card-body">
-            <h5 className="card-title">{this.state.title}</h5>
-            <p className="card-text">{this.state.description}</p>
+      if(this.state.visibility){
+        return (
+          <div className="container">
+            <div className="card">
+            <img className="card-img-top" src={this.state.imagePath} alt="Card image cap" onClick={this.toggleVsibility}/>
+              <div className="card-body">
+                <h5 className="card-title">{this.state.title}</h5>
+                <p className="card-text">{this.state.question}</p>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    );
-  }
+        );
+      }
+      else {
+        return (
+          <div className="container">
+            <div className="card">
+            <img className="card-img-top" src={this.state.imagePath} alt="Card image cap" onClick={this.toggleVsibility}/>
+              <div className="card-body">
+                <p className="card-text">{this.state.hint}</p>
+              </div>
+            </div>
+          </div>
+
+        )
+      }
+    }
+  
 }
 
 
